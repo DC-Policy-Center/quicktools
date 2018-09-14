@@ -1,3 +1,5 @@
+# Figure out if there already is a TOC writer
+
 from string import Template
 
 with open('epi-page-article-card-template.txt','r') as infile:
