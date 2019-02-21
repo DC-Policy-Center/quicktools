@@ -46,7 +46,7 @@ def list_files_csv(startpath, verbose):
 
     if startpath == '': startpath = os.getcwd()
     output = []
-    depth_limit = 2
+    depth_limit = 5
     for root, dirs, files in os.walk(startpath):
         level = root.replace(startpath, '').count(os.sep)
         if level > depth_limit:

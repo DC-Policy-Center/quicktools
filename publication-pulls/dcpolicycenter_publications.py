@@ -44,24 +44,49 @@ while cont == True:
     for i in range(len(all_articles)):
         article_link = links[i]['href']
         article_response = req.get(article_link,headers=headers)
-        
+
         article_soup = bs(article_response.text,'html.parser')
         authors_and_date = article_soup.find_all('span',{'class':'post-meta'})
         tags = article_soup.find_all('p',{'class':'subtitle'})
-        
+
         h1_finding = all_articles[i].find('h1')
         #title_list.append(h1_finding.text)
 
         with open('title_list.txt','a') as f2:
             try:
-                string_to_write_start = h1_finding.text + ';;' + article_link +';;'+authors_and_date[0].text + ';;'+tags[0].text 
+                string_to_write_start = h1_finding.text + ';;' + article_link +';;'+authors_and_date[0].text + ';;'+tags[0].text
                 string_to_write_replace_tabs = string_to_write_start.replace('\t','')
                 string_to_write_replace_breaks = string_to_write_replace_tabs.replace('\n','')
                 string_to_write = string_to_write_replace_breaks + '\n'
                 string_to_write = string_to_write.replace('/ ',';;')
-               
+
+
                 string_to_write_list.append(string_to_write)
                 f2.write(string_to_write)
+
+
+            except:
+                pass
+
+        f2.close()
+
+        with open('title_list.csv','a') as f3:
+            try:
+
+                string_to_write_start_csv = h1_finding.text + ',' + article_link +','+authors_and_date[0].text + ','+tags[0].text
+                string_to_write_replace_tabs_csv = string_to_write_start.replace('\t','')
+                string_to_write_replace_breaks_csv = string_to_write_replace_tabs.replace('\n','')
+                string_to_write_csv = string_to_write_replace_breaks + '\n'
+                string_to_write_csv = string_to_write.replace('/ ',',')
+
+
+
+                string_to_write_list_csv.append(string_to_write_csv)
+                f3.write(string_to_write_csv)
+
+
+                string_to_write_list.append(string_to_write_csv)
+                f3.write(string_to_write_csv)
             except:
                 pass
 
