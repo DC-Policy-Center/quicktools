@@ -10,6 +10,11 @@ import requests as req
 import json
 import re
 
+
+with open('title_list.txt','w') as f2:
+    f2.write('')
+f2.close()
+
 file_head = 'title'+';;'+'url'+';;'+'author'+';;'+'date'+';;'+'tags'+'\n'
 with open('title_list.txt','w') as f2:
     f2.write(file_head)
