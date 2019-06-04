@@ -10,12 +10,12 @@ import requests as req
 import json
 import re
 
-
+sep = ';'
 with open('title_list.txt','w') as f2:
     f2.write('')
 f2.close()
 
-file_head = 'title'+';;'+'url'+';;'+'author'+';;'+'date'+';;'+'tags'+'\n'
+file_head = 'title'+sep+'url'+sep+'author'+sep+'date'+sep+'tags'+'\n'
 with open('title_list.txt','w') as f2:
     f2.write(file_head)
     f2.close()
@@ -59,11 +59,11 @@ while cont == True:
 
         with open('title_list.txt','a') as f2:
             try:
-                string_to_write_start = h1_finding.text + ';;' + article_link +';;'+authors_and_date[0].text + ';;'+tags[0].text
+                string_to_write_start = h1_finding.text + sep + article_link +sep+authors_and_date[0].text + sep+tags[0].text
                 string_to_write_replace_tabs = string_to_write_start.replace('\t','')
                 string_to_write_replace_breaks = string_to_write_replace_tabs.replace('\n','')
                 string_to_write = string_to_write_replace_breaks + '\n'
-                string_to_write = string_to_write.replace('/ ',';;')
+                string_to_write = string_to_write.replace('/ ',sep)
 
 
                 string_to_write_list.append(string_to_write)
