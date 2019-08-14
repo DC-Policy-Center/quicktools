@@ -2,7 +2,8 @@ import pyqrcode
 from PIL import Image
 
 # Generate the qr code and save as png
-qrobj = pyqrcode.create('https://www.dcpolicycenter.org')
+URL = 'https://www.dcpolicycenter.org'
+qrobj = pyqrcode.create(URL)
 with open('test.png', 'wb') as f:
     qrobj.png(f, scale=100)
 
